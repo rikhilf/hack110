@@ -34,8 +34,9 @@ while running:
         pygame.draw.rect(screen, (255,255,255), rect)
         
         hit: bool = rect.colliderect(rect)
-        if hit:
-            blt.remove(item)
+        # if hit:
+        #     blt.remove(item)
+        #     bullet.remove(rect)
         item.move()
         # if hit:
         #     bullet.remove(blt)
@@ -45,9 +46,9 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_e:
                 
-                blt.append(Bullet(randint(0, 600), randint(0, 600), 10, 10))
-                for i in range(0, len(blt)):
-                    bullet.append(pygame.Rect(blt[i].x, blt[i].y, 50, 50))
+                blt.append(Bullet(randint(0, 600), randint(0, 600), 10, 10, [1, 0]))
+                # for i in range(0, len(blt)):
+                #     bullet.append(pygame.Rect(blt[i].x, blt[i].y, 50, 50))
                 
                 fired = True
         
