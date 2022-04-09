@@ -11,7 +11,14 @@ clock = pygame.time.Clock()
 
 running = True
 
-# rect: pygame.Rect = pygame.Rect(600, 20, 50, 50)
+ship : pygame.Rect = pygame.Rect(600, 20, 50, 50)
+
+shipimg = pygame.imag.load('game/assets/spaceship.img')
+playerx = 370
+playery = 480
+
+def player():
+    screen.blit(ship.img, (playerx, playery))
 
 # rect2: pygame.Rect = pygame.Rect(600, 600, 50, 50)
 
@@ -22,8 +29,12 @@ while running:
     screen.fill((120, 200, 255))
     screen.blit(background, (0, 0))
 
-    # pygame.draw.rect(screen, (150, 10, 245), rect)
-    # pygame.draw.rect(screen, (150, 10, 245), rect2)
+    player()
+
+    ship.x = pygame.mouse.get_pos()[0] - 25
+    ship.y = pygame.mouse.get_pos()[1] - 25
+    playerx = ship.x
+    playery = ship.y
 
     pygame.display.flip()
 
