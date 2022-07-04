@@ -1,19 +1,32 @@
 import pygame
-from game.projectiles import Bullet, Asteroid
+from game.projectiles import Bullet, Asteroid, blt, ast, bltList, astList
+
 from random import randint
 import time
 from typing import Union
+from typing import Optional
+bullet_obj: Optional[Bullet] = None
+
 
 pygame.init()
+
 
 screen = pygame.display.set_mode([800, 600])
 background = pygame.image.load('game/assets/background1.png')
 
 clock = pygame.time.Clock()
+running = True
+
+ship : pygame.Rect = pygame.Rect(600, 20, 50, 50)
+
+# blt: list[Bullet] = list()  # Bullet(randint(0, 600), randint(0, 600), 10, 10)
+# ast: list[Asteroid] = list()
+
+
 
 start = time.time()
 
-running = True
+
 
 ship : pygame.Rect = pygame.Rect(600, 20, 50, 50)
 
@@ -32,7 +45,8 @@ lives: int = 3
 bullet: list[pygame.Rect] = list()
 hearts: list = [1, 1, 1]
 
-blt: list[Bullet] = list()  # Bullet(randint(0, 600), randint(0, 600), 10, 10)
+# blt: list[Bullet] = list()  # Bullet(randint(0, 600), randint(0, 600), 10, 10)
+# ast: list[Asteroid] = list()
 # rect: pygame.Rect = blt.getRect()
 while running:
     clock.tick(60)
@@ -57,10 +71,10 @@ while running:
     
     
 
-    
-    for item in blt:
-        rect: pygame.Rect = item.getRect()
-        rect2: pygame.Rect = item.getRect()
+    for item in ast:
+        # rect = item.getAst()
+        rect2 = item.getAst()
+        astList.append(rect2)
         rect_goodbad: bool = False
         rect2_goodbad: bool = False
         if item.vector[1] == -1:
@@ -69,17 +83,37 @@ while running:
         else:
             pygame.draw.rect(screen, (255, 255, 255), rect2)
             rect2_goodbad = True
+        item.move()
+
         
 
-        fire_hit: bool = (rect2.colliderect(rect)) and (not (rect2_goodbad == rect_goodbad))
+
+
+    for item in blt:
+        rect = item.getBul()
+        bltList.append(rect)
+        # rect2: pygame.Rect = item.getBul()
+        rect_goodbad: bool = False
+        rect2_goodbad: bool = False
+        if item.vector[1] == -1:
+            pygame.draw.rect(screen, (0, 0, 0), rect)
+            rect_goodbad = False
+        else:
+            pygame.draw.rect(screen, (255, 255, 255), rect2)
+            rect2_goodbad = True
+
+        # item.astLoop()
+
+
+
+        # fire_hit: bool = (rect2.colliderect(rect)) and (not (rect2_goodbad == rect_goodbad))
         ship_hit: bool = (rect.colliderect(ship)) and (not (rect2_goodbad == rect_goodbad))
 
         
-
-        # if fire_hit:
-        #      blt.remove(item)
-        if ship_hit:
+        if item.fire_hit(rect, rect2):
             blt.remove(item)
+        if ship_hit:
+            ast.remove(item)
             lives -= 1
             hearts.pop()
             # if lives == 2:
@@ -104,7 +138,7 @@ while running:
         fired: bool = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                
+                # bullet_obj = Bullet(ship.x, ship.y - 25, 10, 10, 1, [0, -1])
                 blt.append(Bullet(ship.x, ship.y - 25, 10, 10, 1, [0, -1]))
                 # for i in range(0, len(blt)):
                 #     bullet.append(pygame.Rect(blt[i].x, blt[i].y, 50, 50))
@@ -116,7 +150,7 @@ while running:
             running = False
     for tick in ticks:
             if tick % 11 == 0:
-                blt.append(Bullet(randint(0, 800), 1, 5, 7, 0, [0, 1]))
+                ast.append(Asteroid(randint(0, 800), 1, 5, 7, 0, [0, 1]))
 
     pygame.display.flip()
         
