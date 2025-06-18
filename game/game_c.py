@@ -59,6 +59,10 @@ while running:
     
 
     for item in blt[:]:
+        # if bullet is off the screen, remove it
+        if item.y < 0 or item.x < 0 or item.x > 800 or item.y > 600:
+            blt.remove(item)
+
         bull: pygame.Rect = item.getBullet()
         bltList.append(bull)
 
@@ -75,6 +79,9 @@ while running:
     # TODO: add checks for collisions
 
     for item in ast[:]:
+        # if asteroid is off the screen, remove it
+        if item.y > 600 or item.x < 0 or item.x > 800:
+            ast.remove(item)
         stroid: pygame.Rect = item.getAst()
         astList.append(stroid)
 
