@@ -1,10 +1,8 @@
 import pygame
-from projectiles_rewrite.proj_rewrite import Bullet, Asteroid, blt, ast, bltList, astList
+from projectiles import Bullet, Asteroid, blt, ast
 
 from random import randint
 import time
-
-from typing import Optional
 
 
 pygame.init()
@@ -14,12 +12,12 @@ running = True
 start = time.time()
 
 screen = pygame.display.set_mode([800, 600])
-background = pygame.image.load('assets/background1.png')
+background = pygame.image.load('../assets/background1.png')
 
 clock = pygame.time.Clock()
 
 ship : pygame.Rect = pygame.Rect(600, 20, 50, 50)
-shipimg = pygame.image.load('assets/spaceship.png')
+shipimg = pygame.image.load('../assets/spaceship.png')
 
 playerx = ship.x
 playery = ship.y
@@ -28,7 +26,7 @@ def player():
     screen.blit(shipimg, (playerx, playery))
 
 # hearts and their locations
-h1 = pygame.image.load('assets/heart.png')
+h1 = pygame.image.load('../assets/heart.png')
 h2 = h1
 h3 = h1
 lives: int = 3
@@ -64,9 +62,6 @@ while running:
             blt.remove(item)
 
         bull: pygame.Rect = item.getBullet()
-        bltList.append(bull)
-
-       
         pygame.draw.rect(screen, (0, 0, 0), bull)
 
         for asteroid in ast[:]:
@@ -75,29 +70,19 @@ while running:
 
         item.move()
 
-
-    # TODO: add checks for collisions
-
     for item in ast[:]:
         # if asteroid is off the screen, remove it
         if item.y > 600 or item.x < 0 or item.x > 800:
             ast.remove(item)
-        stroid: pygame.Rect = item.getAst()
-        astList.append(stroid)
 
+
+        stroid: pygame.Rect = item.getAst()
         pygame.draw.rect(screen, (255, 255, 255), stroid)
         
         if stroid.colliderect(ship):
             item.shipCollision()
             lives -= 1
             hearts.pop()
-        
-        # for bullet in blt:
-        #     if stroid.colliderect(bullet):
-        #         ast.remove(stroid)
-        if stroid not in astList:
-            ast.remove(stroid)
-
 
         item.move()
 

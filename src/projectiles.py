@@ -13,7 +13,6 @@ class Bullet:
     radius: int
     speed: float
     vector: list[float]
-    #goodbad: int
 
     def __init__(self, x_pos: int, y_pos: int, radius: int, speed: float, vector: list[float] = [0,1]):
         self.x = x_pos
@@ -37,7 +36,6 @@ class Asteroid:
     radius: int
     speed: float
     vector: list[float]
-    #goodbad: int
 
     def __init__(self, x_pos: int, y_pos: int, radius: int, speed: float, vector: list[float] = [0,1]):
         self.x = x_pos
