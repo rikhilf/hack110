@@ -1,5 +1,5 @@
 import pygame
-from game.projectiles_rewrite.proj_rewrite import Bullet, Asteroid, blt, ast, bltList, astList
+from projectiles_rewrite.proj_rewrite import Bullet, Asteroid, blt, ast, bltList, astList
 
 from random import randint
 import time
@@ -14,12 +14,12 @@ running = True
 start = time.time()
 
 screen = pygame.display.set_mode([800, 600])
-background = pygame.image.load('game/assets/background1.png')
+background = pygame.image.load('assets/background1.png')
 
 clock = pygame.time.Clock()
 
 ship : pygame.Rect = pygame.Rect(600, 20, 50, 50)
-shipimg = pygame.image.load('game/assets/spaceship.png')
+shipimg = pygame.image.load('assets/spaceship.png')
 
 playerx = ship.x
 playery = ship.y
@@ -28,7 +28,7 @@ def player():
     screen.blit(shipimg, (playerx, playery))
 
 # hearts and their locations
-h1 = pygame.image.load('game/assets/heart.png')
+h1 = pygame.image.load('assets/heart.png')
 h2 = h1
 h3 = h1
 lives: int = 3

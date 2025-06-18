@@ -1,5 +1,5 @@
 import pygame
-from game.projectiles import Bullet
+from projectiles import Bullet
 from random import randint
 
 pygame.init()
