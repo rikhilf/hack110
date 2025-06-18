@@ -58,24 +58,23 @@ while running:
 
     
 
-    for item in blt:
+    for item in blt[:]:
         bull: pygame.Rect = item.getBullet()
         bltList.append(bull)
 
        
         pygame.draw.rect(screen, (0, 0, 0), bull)
 
-        for asteroid in astList:
-            for stroid in ast:
-                if bull.colliderect(asteroid):
-                    ast.remove(stroid)
+        for asteroid in ast[:]:
+            if bull.colliderect(asteroid.getAst()):
+                ast.remove(asteroid)
 
         item.move()
 
 
     # TODO: add checks for collisions
 
-    for item in ast:
+    for item in ast[:]:
         stroid: pygame.Rect = item.getAst()
         astList.append(stroid)
 
