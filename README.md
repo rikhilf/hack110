@@ -1,5 +1,3 @@
-# hack110
-
 # Space Shooter Game (From Hack 110 Spring 2022)
 
 A simple arcade-style space shooter built with Pygame where you defend against incoming asteroids.
