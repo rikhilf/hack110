@@ -19,7 +19,7 @@ A simple arcade-style space shooter built with Pygame where you defend against i
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/rikhilf/hack110.git
 cd hack110
 ```
 
@@ -47,25 +47,6 @@ python game.py
 - Shoot asteroids to survive
 - Game ends when all lives are lost
 - Final score is your survival time
-
-## 📁 Project Structure
-
-```
-hack110/
-├── src/
-│   ├── game.py           # Main game loop
-│   └── projectiles.py    # Game objects
-├── assets/
-│   ├── background1.png   # Game background
-│   ├── spaceship.png     # Player sprite
-│   └── heart.png         # Life indicator
-├── requirements.txt
-└── README.md
-```
-
-## 🤝 Contributing
-
-Feel free to fork the repository and submit pull requests!
 
 ## 📝 License
 
